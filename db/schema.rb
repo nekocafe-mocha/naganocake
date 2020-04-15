@@ -27,11 +27,12 @@ ActiveRecord::Schema.define(version: 2020_04_15_120935) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "phone", null: false
+    t.integer "status", default: 0, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.integer "status", default: 0, null: false
-    t.string "reset_password_token", default: "now", null: false
-    t.datetime "reset_password_sent_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
