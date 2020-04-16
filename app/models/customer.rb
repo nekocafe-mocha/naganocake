@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true, format: {with: /\A\d{7}\z/}
   validates :family_name_kana, :first_name_kana, presence: true, format: { with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/}
 
-  has_many :deliveries
+  has_many :deliveries, dependent: :destroy
   has_many :orders
   has_many :cart_items
   has_many :items, through: :cart_items
