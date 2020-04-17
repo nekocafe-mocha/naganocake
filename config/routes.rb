@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   root 'home#top'
-  devise_for :admins
-  devise_for :customers
+  devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
+devise_for :customers, controllers: {
+  sessions:      'customers/sessions',
+  passwords:     'customers/passwords',
+  registrations: 'customers/registrations'
+}
   resources :customers, only: [:show, :edit, :update]
   resources :order_items, only: [:create]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
