@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :admins
   root 'home#top'
-
+  devise_for :admins
   devise_for :customers
   resources :customers, only: [:show, :edit, :update]
   resources :order_items, only: [:create]
