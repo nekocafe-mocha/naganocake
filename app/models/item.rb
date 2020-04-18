@@ -8,4 +8,8 @@ class Item < ApplicationRecord
 	attachment :image
 
 	enum status: {販売中:0, 販売停止中:1}
+
+	def zeikomi
+		return "#{(self.price * 1.1).round(0)}"
+	end
 end
