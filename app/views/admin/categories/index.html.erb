@@ -1,2 +1,36 @@
-<h1>Admin::Categories#index</h1>
-<p>Find me in app/views/admin/categories/index.html.erb</p>
+<h2>ジャンル追加・一覧画面</h2>
+
+<%= form_for(@category, url: admin_categories_path) do |f| %>
+	<span>ジャンル</span>
+	<%= f.text_field :name %>
+	<%= f.radio_button :status, "有効" %>
+	<%= f.label :status, "有効" %>
+	<%= f.radio_button :status, "無効" %>
+	<%= f.label :status, "無効" %>
+	<%= f.submit "追加" %>
+<% end %>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ジャンル</th>
+			<th>状態</th>
+			<th></th>
+		</tr>
+	</thead>
+  <% @categories.each do |category| %>
+	<tbody>
+		<tr>
+			<td>
+				<%= category.name %>
+			</td>
+			<td>
+				<%= category.status %>
+			</td>
+			<td>
+				<%= link_to '編集する', edit_admin_category_path(category) %>
+			</td>
+		</tr>
+	</tbody>
+  <% end %>
+</table>
