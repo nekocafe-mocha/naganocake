@@ -11,7 +11,11 @@
 
   <body>
 
-    <%= render 'layouts/header' %>
+    <% if request.url.include?("admin") %>
+      <%= render 'layouts/admin_header' %>
+    <% else %>
+      <%= render 'layouts/header' %>
+    <% end %>
 
     <%= yield %>
   </body>

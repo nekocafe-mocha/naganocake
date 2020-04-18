@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#top'
 
   devise_for :admins, controllers: {
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :index, :create]
 
   namespace :admin do
+    get 'home/top'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :categories, only: [:index, :create, :edit, :update]
     resources :items, except: [:destory]
