@@ -8,7 +8,7 @@ class CustomersController < ApplicationController
       if customer == current_customer
         @customer = current_customer
       else
-      redirect_to customer_path(current_customer) and return
+        redirect_to customer_path(current_customer) and return
       end
 	end
 
