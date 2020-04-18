@@ -5,9 +5,12 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(item_params)
-    item.save
-    redirect_to admin_item_path
+    @item = Item.new(item_params)
+    if @item.save
+    	redirect_to admin_item_path(item)
+    else
+    	render :new
+    end
   end
 
   def index
@@ -23,8 +26,17 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to admin_item_path
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+    	redirect_to admin_item_path(params[:id])
+    else
+    	render :edit
+    end
+  end
+
+  private
+
+  def item_params
+  	  	params.require(:item).permit(:name, :caption, :price, :image, :status, :category_id)
   end
 end
