@@ -4,4 +4,6 @@ class Item < ApplicationRecord
 	belongs_to :category
 	has_many :cart_items, dependent: :destroy
 	has_many :order_items
+
+	enum status: {販売中:0, 販売停止中:1}
 end
