@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   root 'home#top'
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
+
   resources :customers, only: [:show, :edit, :update]
   resources :order_items, only: [:create]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :index, :create]
 
   namespace :admin do
+    get 'home/top'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :categories, only: [:index, :create, :edit, :update]
     resources :items, except: [:destory]
