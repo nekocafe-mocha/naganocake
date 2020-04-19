@@ -1,28 +1,26 @@
 <div class="container">
 
-
     <h2>配送先編集</h2>
     <%= form_for(@delivery) do |f| %>
 
+      <div class="field">
+        <%= f.label :郵便番号（ハイフンなし） %>
+        <%= f.text_field :postal_code %>
+      </div>
 
-  <div class="field">
-    <%= f.label :郵便番号（ハイフンなし） %>
-    <%= f.text_field :postal_code %>
-  </div>
+      <div class="field">
+        <%= f.label :住所 %>
+        <%= f.text_field :address %>
 
-  <div class="field">
-    <%= f.label :住所 %>
-    <%= f.text_field :address %>
+      <div class="field">
+        <%= f.label :宛名 %>
+        <%= f.text_field :name %>
+      </div>
 
-  <div class="field">
-    <%= f.label :宛名 %>
-    <%= f.text_field :name %>
-  </div>
+      <div class="actions">
+        <%= f.submit "編集する" %>
+      </div>
 
+    <% end %>
 
-
-  <div class="actions">
-    <%= f.submit "編集する" %>
-  </div>
-<% end %>
 </div>

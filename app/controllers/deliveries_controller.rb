@@ -17,7 +17,6 @@ class DeliveriesController < ApplicationController
 
 	def edit
 		@delivery = Delivery.find(params[:id])
-
 	end
 
 	def update
