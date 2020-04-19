@@ -1,2 +1,30 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h2>商品　編集画面</h2>
+
+<%= form_for(@item, url: admin_item_path) do |f| %>
+	<%= f.attachment_field :image %>
+
+	<div>
+		<span>商品名</span>
+		<%= f.text_field :name %>
+	</div>
+
+	<div>
+		<span>商品説明</span>
+		<%= f.text_area :caption %>
+	</div>
+	<div>
+		<span>ジャンル</span>
+		<%= f.select :category_id, Category.all.map{|c| [c.name, c.id]} , include_blank: "--選択してください--" %>
+	</div>
+	<div>
+		<span>税抜価格</span>
+		<%= f.text_field :price %>
+	</div>
+	<div>
+		<span>販売ステータス</span>
+		<%= f.select :status, Item.statuses.keys.to_a, {include_blank: "--選択してください--"} %>
+	</div>
+	<div>
+		<%= f.submit "変更を保存" %>
+	</div>
+<% end %>
