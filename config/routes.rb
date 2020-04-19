@@ -4,15 +4,16 @@ Rails.application.routes.draw do
 
 
   devise_for :admins, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
-}
-devise_for :customers, controllers: {
-  sessions:      'customers/sessions',
-  passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
-}
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+  }
+
 
   resources :customers, only: [:show, :edit, :update]
   resources :order_items, only: [:create]
@@ -22,6 +23,7 @@ devise_for :customers, controllers: {
   resources :orders, only: [:show, :index, :create]
 
   namespace :admin do
+    get 'home/top'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :categories, only: [:index, :create, :edit, :update]
     resources :items, except: [:destory]
@@ -30,7 +32,4 @@ devise_for :customers, controllers: {
     end
  	end
 
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
