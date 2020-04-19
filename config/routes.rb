@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'home#top'
 
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
+
 
   resources :customers, only: [:show, :edit, :update]
   resources :order_items, only: [:create]
