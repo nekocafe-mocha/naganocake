@@ -1,4 +1,7 @@
 class CartItemsController < ApplicationController
+	def index
+    end
+
 	def create
     end
 
@@ -6,9 +9,6 @@ class CartItemsController < ApplicationController
     end
 
     def update
-    end
-
-    def index
     end
 
 end
