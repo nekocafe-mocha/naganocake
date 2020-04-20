@@ -31,6 +31,7 @@
         <h4 class="card-text font-weight-bold">￥<%= @item.zeikomi %><small class="text-muted">（税込）</small></h4>
 
         <%= form_for(@cart_item) do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
           <div class="lex-row">
             <div class="form-group">
               <%= f.select :quantity, options_for_select((1..10).to_a), {include_blank: '個数選択'}, class: 'form-control' %>
