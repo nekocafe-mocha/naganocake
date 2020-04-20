@@ -1,1 +1,25 @@
-ecサイトトップページ
+<div class="container">
+  <div class="row">
+  	<div class="col-md-3">
+  	  <table class="table table-bordered">
+  	  	<thead>
+          <tr>
+            <th>ジャンル一覧</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= link_to category.name, items_path(category_id: category.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-9">
+      <div class="card card-body bg-light p-5">
+        ようこそ、NaganoCakeへ！<br>
+        このサイトは、ケーキ販売のＥＣサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。<br>
+      </div>

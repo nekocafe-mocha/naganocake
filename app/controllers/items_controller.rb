@@ -11,5 +11,6 @@ class ItemsController < ApplicationController
 	def show
 	  @categories = Category.all
 	  @item = Item.find(params[:id])
+  	  @cart_item = current_customer.cart_items.new
 	end
 end
