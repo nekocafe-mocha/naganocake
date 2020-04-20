@@ -12,4 +12,6 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :cart_items
   has_many :items, through: :cart_items
+
+  enum status: {有効:0, 退会:1}
 end
