@@ -1,38 +1,44 @@
- <header>
-  <div class="col-xs-2">
-    <div>LOGO</div>
-  </div>
-  <div class="col-xs-10">
-    <div id="slidemenu">
-      <ul class="nav navbar-nav navbar-right">
-        <% if customer_signed_in? %>
-          <li class="">
-            ようこそ、<%= current_customer.family_name %>さん！
-          </li>
-          <li class="">
-            <%= link_to 'マイページ', customer_path(current_customer.id) %>
-          </li>
-          <li class="">
-            <%= link_to '商品一覧', items_path %>
-          </li>
-          <li class ="">
-            <%= link_to 'カート', cart_items_path %>
-          </li>
-          <li class="">
-            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li class ="">
-            <%= link_to '商品一覧', items_path %>
-          </li>
-          <li class="">
-            <%= link_to '新規登録', new_customer_registration_path  %>
-          </li>
-          <li class="">
-            <%= link_to 'ログイン', new_customer_session_path  %>
-          </li>
-        <% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">ながのCake</a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <% if customer_signed_in? %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <span class="nav-link">ようこそ、<%= current_customer.family_name %>さん！</span>
+        </li>
       </ul>
-    </div>
+      <ul class="navbar-nav">
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to 'マイページ', customer_path(current_customer.id), class: "nav-link" %>
+        </li>
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to '商品一覧', items_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to 'カート', cart_items_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to '商品一覧', items_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to '新規登録', new_customer_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item btn btn-outline-secondary m-md-3">
+          <%= link_to 'ログイン', new_customer_session_path, class: "nav-link" %>
+        </li>
+      </ul>
+    <% end %>
   </div>
-</header>
+</nav>
+
