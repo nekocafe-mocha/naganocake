@@ -25,6 +25,7 @@
 	  			</td>
 	  			<td>
 	  				<%= form_for (cart_item) do |f| %>
+						<%= f.hidden_field :item_id, value: cart_item.item_id %>
 		  				<%= f.text_field :quantity %>
 		  				<%= f.submit '更新', class: "btn btn-primary" %>
 		  			<% end %>

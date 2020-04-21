@@ -10,8 +10,16 @@ class Customer < ApplicationRecord
 
   has_many :deliveries, dependent: :destroy
   has_many :orders
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :items, through: :cart_items
 
   enum status: {有効:0, 退会:1}
+
+  def full_info
+    self.postal_code + self.address + self.family_name + self.first_name
+  end
+
+  def full_name
+    self.family_name + self.first_name
+  end
 end
