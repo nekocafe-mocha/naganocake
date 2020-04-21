@@ -13,7 +13,7 @@
 				<th></th>
 			</tr>
 		</thead>
-	  <%= @cart_items.each do |cart_item| %>
+	  <% @cart_items.each do |cart_item| %>
 	  	<tbody>
 	  		<tr>
 	  			<td>
@@ -52,4 +52,6 @@
 
 
 <%= link_to '買い物を続ける', root_path, class: "btn btn-primary" %>
+
+<%= link_to '情報入力画面に進む', new_order_path, class: "btn btn-success" %>
 
