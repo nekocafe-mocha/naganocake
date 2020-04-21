@@ -21,14 +21,18 @@ Rails.application.routes.draw do
   end
   resources :order_items, only: [:create]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-  resources :cart_items, only: [:create, :destroy, :update, :index, :new] do
-    member do
-     get 'confirm'
+  resources :cart_items, only: [:create, :destroy, :update, :index] do
+    collection do
+      get 'thanks'
     end
   end
   delete 'cart_items' => 'cart_items#cart_destroy', as: 'cart_items_destroy'
   resources :items, only: [:index, :show]
-  resources :orders, only: [:show, :index, :create]
+  resources :orders, only: [:show, :index, :create, :new] do
+    member do
+     get 'confirm'
+    end
+  end
 
   namespace :admin do
     get 'home/top'
