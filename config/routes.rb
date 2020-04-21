@@ -16,21 +16,18 @@ Rails.application.routes.draw do
 
   resources :customers, only: [:show, :edit, :update] do
     member do
-     get 'confirm'
+      get 'confirm'
     end
   end
   resources :order_items, only: [:create]
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-  resources :cart_items, only: [:create, :destroy, :update, :index] do
-    collection do
-      get 'thanks'
-    end
-  end
+  resources :cart_items, only: [:create, :destroy, :update, :index]
   delete 'cart_items' => 'cart_items#cart_destroy', as: 'cart_items_destroy'
   resources :items, only: [:index, :show]
   resources :orders, only: [:show, :index, :create, :new] do
     member do
-     get 'confirm'
+      get 'confirm'
+      get 'thanks'
     end
   end
 
