@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |f| %>
+
+        <%= f.select :pay_select, Order.pay_selects %>
+
+        <%= f.radio_button :select_type, :my_delivery %>
+        <p><%= current_customer.full_info %></p>
+
+        <%= f.radio_button :select_type, :registred_delivery %>
+        <%= f.collection_select(:delivery_id, @customer.deliveries, :id, :full_info) %>
+
+        <%= f.radio_button :select_type, :new_delivery %>
+        <%= f.label :郵便番号（ハイフンなし） %>
+        <%= f.text_field :postal_code %>
+
+        <%= f.label :住所 %>
+        <%= f.text_field :address %>
+
+        <%= f.label :宛名 %>
+        <%= f.text_field :name %>
+
+        <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+      <% end %>
+    </div>
+</div>
