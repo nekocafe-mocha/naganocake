@@ -1,78 +1,55 @@
-<h2>会員詳細画面</h2>
+<div class="container">
+	<h2 class="font-weight-bold">会員詳細画面</h2>
 
-<table>
-	<tr>
-		<td>
-			<p>顧客ID</p>
-		</td>
-		<td>
-			<p>
-				<%= @customer.id %> <span><%= @customer.status %></span>会員
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<p>氏名</p>
-		</td>
-		<td>
-			<p>
-				<%= @customer.family_name %> <%= @customer.first_name %>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<p>フリガナ</p>
-		</td>
-		<td>
-			<p>
-				<%= @customer.family_name_kana %> <%= @customer.first_name_kana %>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<p>郵便番号</p>
-		</td>
-		<td>
-			<P>
-				<%= @customer.postal_code %>
-			</P>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<p>住所</p>
-		</td>
-		<td>
-			<P>
-				<%= @customer.address %>
-			</P>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<P>電話番号</P>
-		</td>
-		<td>
-			<p>
-				<%= @customer.phone %>
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<p>メールアドレス</p>
-		</td>
-		<td>
-			<p>
-				<%= @customer.email %>
-			</p>
-		</td>
-	</tr>
-</table>
+	<div class="row">
+		<div class="col-md-6">
+			<table class="table table-borderless ">
+				<tr>
+					<td>顧客ID</td>
+					<td>
+						<%= @customer.id %>    <span class="bg-info"><%= @customer.status %>会員</span>
+					</td>
+				</tr>
+				<tr>
+					<td>氏名</td>
+					<td>
+						<%= @customer.family_name %> <%= @customer.first_name %>
+					</td>
+				</tr>
+				<tr>
+					<td>フリガナ</td>
+					<td>
+						<%= @customer.family_name_kana %> <%= @customer.first_name_kana %>
+					</td>
+				</tr>
+				<tr>
+					<td>郵便番号</td>
+					<td>
+						<%= @customer.postal_code %>
+					</td>
+				</tr>
+				<tr>
+					<td>住所</td>
+					<td>
+						<%= @customer.address %>
+					</td>
+				</tr>
+				<tr>
+					<td>電話番号</td>
+					<td>
+						<%= @customer.phone %>
+					</td>
+				</tr>
+				<tr>
+					<td>メールアドレス</td>
+					<td>
+						<%= @customer.email %>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-primary" %>
+	<%= link_to '注文履歴一覧を見る',  admin_orders_path, class: "btn btn-primary", style: "margin-left: 15px;" %>
 
-<%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-primary" %>
-<%= link_to '注文履歴一覧を見る',  admin_orders_path, class: "btn btn-primary" %>
-
+</div>
