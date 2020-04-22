@@ -1,36 +1,44 @@
-<h2>商品一覧画面</h2>
-
-<%= link_to '+', new_admin_item_path %>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>商品ID</th>
-			<th>商品名</th>
-			<th>税抜価格</th>
-			<th>ジャンル</th>
-			<th>ステータス</th>
-		</tr>
-	</thead>
-  <% @items.each do |item| %>
-	<tbody>
-		<tr>
-			<td>
-				<%= item.id %>
-			</td>
-			<td>
-				<%= link_to item.name, admin_item_path(item) %>
-			</td>
-			<td>
-				<%= item.price %>
-			</td>
-			<td>
-				<%= item.category.name %>
-			</td>
-			<td>
-				<%= item.status %>
-			</td>
-		</tr>
-	</tbody>
-  <% end %>
-</table>
+<div class="container">
+	<div class="row">
+		<h2 class="font-weight-bold">商品一覧画面</h2>
+		<div class="shadow-sm rounded-circle p-0" style="width:2rem;height:2rem;">
+			<%= link_to '+', new_admin_item_path, class: "btn btn-warning rounded-circle p-0", style: "width:2rem;height:2rem;" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 mx-auto">
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th>商品ID</th>
+						<th>商品名</th>
+						<th>税抜価格</th>
+						<th>ジャンル</th>
+						<th>ステータス</th>
+					</tr>
+				</thead>
+			  <% @items.each do |item| %>
+				<tbody>
+					<tr>
+						<td>
+							<%= item.id %>
+						</td>
+						<td>
+							<%= link_to item.name, admin_item_path(item) %>
+						</td>
+						<td>
+							<%= item.price %>
+						</td>
+						<td>
+							<%= item.category.name %>
+						</td>
+						<td>
+							<%= item.status %>
+						</td>
+					</tr>
+				</tbody>
+			  <% end %>
+			</table>
+		</div>
+	</div>
+</div>
