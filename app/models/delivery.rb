@@ -4,6 +4,6 @@ class Delivery < ApplicationRecord
   belongs_to :customer
 
   def full_info
-  	"#{self.postal_code} #{self.address} #{self.name}"
+  	"#{self.postal_code} #{self.address}  #{self.name}"
   end
 end
