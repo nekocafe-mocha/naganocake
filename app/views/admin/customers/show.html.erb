@@ -13,7 +13,7 @@
 				<tr>
 					<td>氏名</td>
 					<td>
-						<%= @customer.family_name %> <%= @customer.first_name %>
+						<%= @customer.full_name %>
 					</td>
 				</tr>
 				<tr>
@@ -50,6 +50,6 @@
 		</div>
 	</div>
 	<%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-primary" %>
-	<%= link_to '注文履歴一覧を見る',  admin_orders_path, class: "btn btn-primary", style: "margin-left: 15px;" %>
+	<%= link_to '注文履歴一覧を見る',  admin_orders_path(customer_id: @customer.id), class: "btn btn-primary", style: "margin-left: 15px;" %>
 
 </div>
