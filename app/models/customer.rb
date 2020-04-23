@@ -16,7 +16,7 @@ class Customer < ApplicationRecord
   enum status: {有効:0, 退会:1}
 
   def full_info
-    self.postal_code + self.address + self.family_name + self.first_name
+    "#{self.postal_code} #{self.address}  #{self.family_name}#{self.first_name}"
   end
 
   def full_name
