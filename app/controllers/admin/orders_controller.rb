@@ -1,12 +1,18 @@
 class Admin::OrdersController < ApplicationController
 
   def index
-  	@orders = Order.all
+  	if customer = Customer.find_by(id: params[:customer_id])
+  		@orders = customer.orders
+  	elsif params[:created_at]
+  		@orders = Order.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day)
+  	else
+  		@orders = Order.all
+  	end
   end
 
   def show
   	@order = Order.find(params[:id])
-  	@order_items = OrderItem.where(order_id: params[:id])
+  	@order_items = @order.order_items
   end
 
   def update
