@@ -1,30 +1,58 @@
-<h2>商品　編集画面</h2>
+<div class="container">
+	<h2 class="font-weight-bold mb-4">商品 編集画面</h2>
+	<div class="row">
+		<div class="col-md-4 text-center">
+			<div id="img_field" class="mb-4">
+				<% if @item.image.present? %>
+					<%= attachment_image_tag @item, :image, :fill, 270, 200, format: 'jpeg' %>
+				<% else %>
+					<i class="far fa-image fa-10x text-secondary"></i>
+				<% end %>
+			</div>
+			<span onClick="$('#file').click()" class="btn btn-primary">画像選択</span>
+		</div>
+		<div class="col-md-6">
+		  <%= form_for(@item, url: admin_item_path) do |f| %>
 
-<%= form_for(@item, url: admin_item_path) do |f| %>
-	<%= f.attachment_field :image %>
+			<%= f.attachment_field :image, style: "display:none;", id: "file" %>
 
-	<div>
-		<span>商品名</span>
-		<%= f.text_field :name %>
+
+			<div class="form-group row">
+				<%= f.label '商品名', class: "col-md-3 col-form-label" %>
+				<div class="col-md-7">
+					<%= f.text_field :name, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<%= f.label '商品説明', class: "col-md-3 col-form-label" %>
+				<div class="col-md-7">
+					<%= f.text_area :caption, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<%= f.label 'ジャンル', class: "col-md-3 col-form-label" %>
+				<div class="col-md-7">
+					<%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: "--選択してください--"}, {class: "form-control"}) %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<%= f.label '税抜価格', class: "col-md-3 col-form-label" %>
+				<div class="col-md-7">
+					<%= f.text_field :price, class: "form-control" %>
+				</div>
+			</div>
+			<div class="form-group row">
+				<%= f.label '販売ステータス', class: "col-md-3 col-form-label" %>
+				<div class="col-md-7">
+					<%= f.select :status, Item.statuses.keys.to_a, {include_blank: "--選択してください--"}, class: "form-control" %>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div>
-		<span>商品説明</span>
-		<%= f.text_area :caption %>
+	<div class="row">
+		<%= f.submit "変更を保存", class: "btn btn-primary btn-lg offset-md-10" %>
 	</div>
-	<div>
-		<span>ジャンル</span>
-		<%= f.select :category_id, Category.all.map{|c| [c.name, c.id]} , include_blank: "--選択してください--" %>
-	</div>
-	<div>
-		<span>税抜価格</span>
-		<%= f.text_field :price %>
-	</div>
-	<div>
-		<span>販売ステータス</span>
-		<%= f.select :status, Item.statuses.keys.to_a, {include_blank: "--選択してください--"} %>
-	</div>
-	<div>
-		<%= f.submit "変更を保存" %>
-	</div>
-<% end %>
+	<% end %>
+</div>
+
