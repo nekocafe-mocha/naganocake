@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   validates :family_name_kana, :first_name_kana, presence: true, format: { with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/}
 
   has_many :deliveries, dependent: :destroy
-  has_many :orders, dependent: :destroy
+  has_many :orders
   has_many :cart_items, dependent: :destroy
   has_many :items, through: :cart_items
 
