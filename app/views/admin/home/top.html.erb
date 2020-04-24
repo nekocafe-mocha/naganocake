@@ -1,7 +1,9 @@
 <div class="container">
-	<h2>管理者画面</h2>
-
-
-	本日の注文件数　　　　　<%= link_to @count,admin_orders_path %> 件
-  
+	<h2 class="font-weight-bold mb-4">管理者画面</h2>
+	<div class="row">
+		<h3 class="p-5">本日の注文件数</h3>
+		<h3 class="p-5">
+			<%= link_to @count, admin_orders_path(created_at: @range) %>件
+		</h3>
+	</div>
 </div>
