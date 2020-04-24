@@ -7,23 +7,23 @@
 
 		<table class="table table-borderless col-md-5">
 			<tr>
-				<th class="small" style="width: 35%">商品名</th>
+				<th class="small align-middle" style="width: 35%">商品名</th>
 				<td style="width: 65%"><%= @item.name %></td>
 			</tr>
 			<tr>
-				<th class="small">商品説明</th>
+				<th class="small align-text-top">商品説明</th>
 				<td><%= @item.caption %></td>
 			</tr>
 			<tr>
-				<th class="small">ジャンル</th>
+				<th class="small align-middle">ジャンル</th>
 				<td><%= @item.category.name %></td>
 			</tr>
 			<tr>
-				<th class="small">税込価格（税抜価格）</th>
+				<th class="small align-middle">税込価格（税抜価格）</th>
 				<td><%= @item.zeikomi %>（<%= @item.price %>）円</td>
 			</tr>
 			<tr>
-				<th class="small">販売ステータス</th>
+				<th class="small align-middle">販売ステータス</th>
 				<td><%= @item.status %></td>
 			</tr>
 		</table>
