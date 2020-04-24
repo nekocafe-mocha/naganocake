@@ -2,7 +2,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
   	@category = Category.new
-  	@categories = Category.all
+  	@categories = Category.where(status: '有効')
   end
 
   def create

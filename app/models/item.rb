@@ -12,5 +12,10 @@ class Item < ApplicationRecord
 	def zeikomi
 		return "#{(self.price * 1.1).round(0)}"
 	end
-  
+
+	def price=(value)
+    	value.tr!('０-９', '0-9') if value.is_a?(String)
+    	super(value)
+  	end
+
 end
