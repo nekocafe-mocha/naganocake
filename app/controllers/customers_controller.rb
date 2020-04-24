@@ -24,7 +24,7 @@ class CustomersController < ApplicationController
 
 	def confirm
 	end
-
+ 
 	private
   	def customer_params
   		params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :address, :phone, :email)
