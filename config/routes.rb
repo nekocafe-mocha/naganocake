@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     collection do
       get 'confirm'
       post 'thanks'
+      get 'thanks', to: 'items#index'
     end
   end
 
