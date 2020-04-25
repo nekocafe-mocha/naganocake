@@ -1,4 +1,4 @@
-class OrderItemsController < ApplicationController
+class OrderItemsController < CustomerSideController
 	def create
 	end
 end

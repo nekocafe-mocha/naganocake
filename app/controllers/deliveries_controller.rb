@@ -1,4 +1,4 @@
-class DeliveriesController < ApplicationController
+class DeliveriesController < CustomerSideController
 	def index
         @deliveries = Delivery.where(customer_id: current_customer.id)
 		@delivery = Delivery.new
