@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < Admin::AdminSideController
 
   def index
   	if customer = Customer.find_by(id: params[:customer_id])

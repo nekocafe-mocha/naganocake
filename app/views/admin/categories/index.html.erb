@@ -1,8 +1,7 @@
 <div class="container">
-
-	<h2 class="font-weight-bold">ジャンル追加・一覧画面</h2>
+	<h2 class="font-weight-bold mb-4">ジャンル追加・一覧画面</h2>
 	<div class="row">
-		<div class="col-md-6" style="margin-top: 30px;">
+		<div class="col-md-6">
 			<%= form_for(@category, url: admin_categories_path) do |f| %>
 				<%= f.label "ジャンル" %>
 				<%= f.text_field :name, style: "margin-left: 10px" %>

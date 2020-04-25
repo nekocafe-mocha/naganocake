@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class OrdersController < CustomerSideController
 
 	def index
 		@orders = Order.where(customer_id: current_customer.id)

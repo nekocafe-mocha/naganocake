@@ -1,7 +1,8 @@
-class Admin::ItemsController < ApplicationController
+class Admin::ItemsController < Admin::AdminSideController
 
   def new
     @item = Item.new
+    @categories = Category.where(status: '有効')
   end
 
   def create
@@ -23,6 +24,7 @@ class Admin::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @categories = Category.where(status: '有効')
   end
 
   def update

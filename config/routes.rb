@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
+
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     collection do
       get 'confirm'
       post 'thanks'
+      get 'thanks', to: 'items#index'
     end
   end
 
