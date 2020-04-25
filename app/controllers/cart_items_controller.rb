@@ -1,4 +1,4 @@
-class CartItemsController < ApplicationController
+class CartItemsController < CustomerSideController
 
     def index
     	@cart_items = current_customer.cart_items.order(updated_at: :desc)
