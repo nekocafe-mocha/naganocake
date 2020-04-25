@@ -17,14 +17,21 @@ class DeliveriesController < CustomerSideController
 
 	def edit
 		@delivery = Delivery.find(params[:id])
+		if @delivery.customer_id != current_customer.id
+			redirect_back(fallback_location: root_path)
+		end
 	end
 
 	def update
 		@delivery = Delivery.find(params[:id])
-		if @delivery.update(delivery_params)
-		   redirect_to deliveries_path
+		if @delivery.customer_id != current_customer.id
+			redirect_back(fallback_location: root_path)
 		else
-		   render :edit
+			if @delivery.update(delivery_params)
+		   		redirect_to deliveries_path
+			else
+		   		render :edit
+			end
 		end
 	end
 
