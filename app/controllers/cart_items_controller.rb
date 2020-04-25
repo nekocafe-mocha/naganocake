@@ -31,8 +31,12 @@ class CartItemsController < CustomerSideController
 
     def destroy
     	cart_item = CartItem.find(params[:id])
-    	cart_item.destroy
-    	redirect_to cart_items_path
+        if cart_item.customer_id != current_customer.id
+            redirect_back(fallback_location: root_path)
+    	else
+            cart_item.destroy
+    	    redirect_to cart_items_path
+        end
     end
 
     def cart_destroy
