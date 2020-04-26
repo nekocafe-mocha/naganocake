@@ -11,7 +11,7 @@ class ItemsController < CustomerSideController
 	def show
 	  @categories = Category.all
 	  @item = Item.find(params[:id])
-  	  @cart_item = current_customer.cart_items.new
+  	  @cart_item = current_customer.cart_items.new if current_customer.present?
 	end
 
 	private

@@ -15,6 +15,22 @@ class Customer < ApplicationRecord
 
   enum status: {有効:0, 退会:1}
 
+  # 物理削除の代わりにユーザーの`deleted_at`をタイムスタンプで更新
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+    update_attributes(status: "退会")
+  end
+
+  # ユーザーのアカウントが有効であることを確認
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # 削除したユーザーにカスタムメッセージを追加します
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
   def full_info
     "#{self.postal_code} #{self.address}  #{self.family_name}#{self.first_name}"
   end
