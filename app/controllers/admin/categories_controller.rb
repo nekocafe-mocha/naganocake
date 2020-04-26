@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::AdminSideController
   	if @category.update(category_params)
   		redirect_to admin_categories_path
   	else
-  		render :edit
+  		redirect_back(fallback_location: root_path)
   	end
   end
 
