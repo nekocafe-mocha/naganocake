@@ -27,10 +27,17 @@
                 <p class="card-text">
                   <%= item.price %>
                 </p>
+                <% if item.status == '販売中' %>
+                  <p class="card-text"><br></p>
+                <% else %>
+                  <p class="card-text">売切れ</p>
+                <% end %>
               </div>
             </div>
           </div>
         <% end %>
+        <%= paginate @items, class: "paginate" %>
       </div>
+    </div>
   </div>
 </div>

@@ -2,9 +2,9 @@ class ItemsController < CustomerSideController
 	def index
 	  @categories = Category.all
 	  if category = Category.find_by(id: params[:category_id])
-	    @items = category.items
+	    @items = category.items.page(params[:page]).per(8)
 	  else
-	    @items = Item.all
+	    @items = Item.all.page(params[:page]).per(8)
 	  end
 	end
 
