@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'home/top'
+    get 'search/search'
     resources :customers, only: [:index, :show, :edit, :update]
     resources :categories, only: [:index, :create, :edit, :update]
     resources :items, except: [:destory]

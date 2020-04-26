@@ -12,47 +12,46 @@
 			<span onClick="$('#file').click()" class="btn btn-primary">画像選択</span>
 		</div>
 		<div class="col-md-6">
-		  <%= form_for(@item, url: admin_items_path) do |f| %>
+			<%= form_for(@item, url: admin_items_path) do |f| %>
 
-			<%= f.attachment_field :image, style: "display:none;", id: "file" %>
+				<%= f.attachment_field :image, style: "display:none;", id: "file" %>
 
 
-			<div class="form-group row">
-				<%= f.label '商品名', class: "col-md-3 col-form-label" %>
-				<div class="col-md-7">
-					<%= f.text_field :name, class: "form-control" %>
+				<div class="form-group row">
+					<%= f.label '商品名', class: "col-md-3 col-form-label" %>
+					<div class="col-md-7">
+						<%= f.text_field :name, class: "form-control" %>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<%= f.label '商品説明', class: "col-md-3 col-form-label" %>
-				<div class="col-md-7">
-					<%= f.text_area :caption, class: "form-control" %>
+				<div class="form-group row">
+					<%= f.label '商品説明', class: "col-md-3 col-form-label" %>
+					<div class="col-md-7">
+						<%= f.text_area :caption, class: "form-control" %>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<%= f.label 'ジャンル', class: "col-md-3 col-form-label" %>
-				<div class="col-md-7">
-					<%= f.collection_select(:category_id, @categories, :id, :name, {include_blank: "--選択してください--"}, {class: "form-control"}) %>
+				<div class="form-group row">
+					<%= f.label 'ジャンル', class: "col-md-3 col-form-label" %>
+					<div class="col-md-7">
+						<%= f.collection_select(:category_id, @categories, :id, :name, {include_blank: "--選択してください--"}, {class: "form-control"}) %>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<%= f.label '税抜価格', class: "col-md-3 col-form-label" %>
-				<div class="col-md-7">
-					<%= f.text_field :price, class: "form-control" %>
+				<div class="form-group row">
+					<%= f.label '税抜価格', class: "col-md-3 col-form-label" %>
+					<div class="col-md-7">
+						<%= f.text_field :price, class: "form-control" %>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<%= f.label '販売ステータス', class: "col-md-3 col-form-label" %>
-				<div class="col-md-7">
-					<%= f.select :status, Item.statuses.keys.to_a, {include_blank: "--選択してください--", selected: "--選択してください--"}, class: "form-control" %>
+				<div class="form-group row">
+					<%= f.label '販売ステータス', class: "col-md-3 col-form-label" %>
+					<div class="col-md-7">
+						<%= f.select :status, Item.statuses.keys.to_a, {include_blank: "--選択してください--", selected: "--選択してください--"}, class: "form-control" %>
+					</div>
 				</div>
-			</div>
+				<div class="row">
+					<%= f.submit "新規登録", class: "btn btn-primary btn-lg offset-md-11" %>
+				</div>
+		　　	<% end %>
 		</div>
 	</div>
-
-	<div class="row mb-4">
-		<%= f.submit "新規登録", class: "btn btn-primary btn-lg offset-md-10" %>
-	</div>
-	<% end %>
 </div>
 
