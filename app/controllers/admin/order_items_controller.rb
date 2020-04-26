@@ -3,6 +3,15 @@ class Admin::OrderItemsController < Admin::AdminSideController
 	def update
 		order_item = OrderItem.find(params[:id])
 		order_item.update(order_item_params)
+		order_items = order_item.order.order_items
+		order = order_item.order
+		if order_items.pluck(:status).all?{|status| status == '製作完了'}
+			order.update(status: '発送準備中')
+		elsif order_items.where(status: '製作中').any?
+			order.update(status: '製作中')
+		else
+			order_item.update(order_item_params)
+		end
 		redirect_to admin_order_path(order_item.order)
 	end
 
