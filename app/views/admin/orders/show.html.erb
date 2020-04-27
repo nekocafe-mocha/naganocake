@@ -65,7 +65,7 @@
 		<table class="table table-borderless col-md-4" style="position: absolute; right: 0; bottom: 0;">
 			<tr>
 				<th style="width: 40%;">商品合計</th>
-				<td><%= @order.total_price %>円</td>
+				<td><%= (@order.total_price*1.1).round(0) %>円</td>
 			</tr>
 			<tr>
 				<th>送料</th>
@@ -74,7 +74,7 @@
 			<tr>
 				<th>請求合計金額</th>
 				<td>
-					<strong><%= @order.total_price+@order.postage %>円</strong>
+					<strong><%= (@order.total_price*1.1).round(0)+@order.postage %>円</strong>
 				</td>
 			</tr>
 		</table>

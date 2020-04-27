@@ -10,12 +10,13 @@ class Admin::ItemsController < Admin::AdminSideController
     if @item.save
     	redirect_to admin_item_path(@item)
     else
+      @categories = Category.where(status: '有効')
     	render :new
     end
   end
 
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def show
@@ -32,6 +33,7 @@ class Admin::ItemsController < Admin::AdminSideController
     if @item.update(item_params)
     	redirect_to admin_item_path(params[:id])
     else
+      @categories = Category.where(status: '有効')
     	render :edit
     end
   end
