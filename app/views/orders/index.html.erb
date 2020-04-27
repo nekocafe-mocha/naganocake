@@ -29,7 +29,7 @@
 		  				<% end %>
 		  			</td>
 		  			<td class="align-middle">
-		  				<%= order.total_price+order.postage %>円
+		  				<%= (order.total_price*1.1+order.postage).round(0) %>円
 		  			</td>
 		  			<td class="align-middle">
 		  				<%= order.status %>

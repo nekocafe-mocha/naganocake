@@ -57,6 +57,7 @@ class OrdersController < CustomerSideController
 			    total_price: @total_price,
 			    pay_select: order_params[:pay_select].to_i
 			)
+			@delivery.save
 		end
 	end
 
