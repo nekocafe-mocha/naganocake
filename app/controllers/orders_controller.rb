@@ -37,7 +37,7 @@ class OrdersController < CustomerSideController
 			@order = current_customer.orders.new(
 				name: delivery.name,
 			    postal_code: delivery.postal_code,
-			    address: delivery.postal_code,
+			    address: delivery.address,
 		    	phone: current_customer.phone,
 			    total_price: @total_price,
 			    pay_select: order_params[:pay_select].to_i
