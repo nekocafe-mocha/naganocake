@@ -23,11 +23,11 @@ class OrdersController < CustomerSideController
 		when 'my_delivery'
 			@order = current_customer.orders.new(
 				name: current_customer.full_name,
-			    postal_code: current_customer.postal_code,
-			    address: current_customer.address,
-			    phone: current_customer.phone,
-			    total_price: @total_price,
-			    pay_select: order_params[:pay_select].to_i
+				postal_code: current_customer.postal_code,
+				address: current_customer.address,
+				phone: current_customer.phone,
+				total_price: @total_price,
+				pay_select: order_params[:pay_select].to_i
 			)
 		when 'registred_delivery'
 			delivery = current_customer.deliveries.find_by(
@@ -36,52 +36,53 @@ class OrdersController < CustomerSideController
 
 			@order = current_customer.orders.new(
 				name: delivery.name,
-			    postal_code: delivery.postal_code,
-			    address: delivery.address,
-		    	phone: current_customer.phone,
-			    total_price: @total_price,
-			    pay_select: order_params[:pay_select].to_i
+				postal_code: delivery.postal_code,
+				address: delivery.address,
+				phone: current_customer.phone,
+				total_price: @total_price,
+				pay_select: order_params[:pay_select].to_i
 			)
 		when 'new_delivery'
-			@delivery = current_customer.deliveries.new(
+			delivery = current_customer.deliveries.new(
 				name: order_params[:name],
 				address: order_params[:address],
 				postal_code: order_params[:postal_code],
 			)
-
-			@order = current_customer.orders.new(
-				name: @delivery.name,
-				postal_code: @delivery.postal_code,
-			    address: @delivery.address,
-		    	phone: current_customer.phone,
-			    total_price: @total_price,
-			    pay_select: order_params[:pay_select].to_i
-			)
-			unless @delivery.save
-				@customer = current_customer
-				render :new
+			if delivery.valid?
+				@order = current_customer.orders.new(
+					name: delivery.name,
+					postal_code: delivery.postal_code,
+					address: delivery.address,
+					phone: current_customer.phone,
+					total_price: @total_price,
+					pay_select: order_params[:pay_select].to_i
+				)
+			else
+				flash[:error] = '※新しいお届け先に誤りがあります'
+				redirect_back(fallback_location: root_path)
 			end
+			delivery.save
 		end
 	end
 
 	def thanks
 		@order = current_customer.orders.new(order_params)
 		ActiveRecord::Base.transaction do
-	    	if @order.save!
-	    		cart_items = current_customer.cart_items
-	    		cart_items.each do |c_i|
-		    		order_item = @order.order_items.new(
-		    			item_id: c_i.item_id,
-		    			price: c_i.item.price,
-		    			quantity: c_i.quantity,
-		    		)
-		    		order_item.save
-		    	end
-		    	cart_items.destroy_all
-	    	else
-	    		redirect_back(fallback_location: root_path)
-	    	end
-	    end
+			if @order.save!
+				cart_items = current_customer.cart_items
+				cart_items.each do |c_i|
+					order_item = @order.order_items.new(
+						item_id: c_i.item_id,
+						price: c_i.item.price,
+						quantity: c_i.quantity,
+					)
+					order_item.save
+				end
+				cart_items.destroy_all
+			else
+				redirect_back(fallback_location: root_path)
+			end
+		end
 	end
 
 	private
@@ -96,5 +97,5 @@ class OrdersController < CustomerSideController
 			:total_price,
 			:phone
 		)
-    end
+	end
 end

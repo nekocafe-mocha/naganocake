@@ -1,9 +1,13 @@
 <div class="container">
-  <%= render 'layouts/errors', obj: @delivery %>
   <div class="row">
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
+      <% if flash[:error] %>
+        <div class="flash">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
       <h2>注文情報入力</h2><br>
       <h5 class="font-weight-bold">支払方法</h5>
         <%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |f| %>
