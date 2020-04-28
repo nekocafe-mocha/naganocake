@@ -1,7 +1,7 @@
 <div class="container">
 	<h3 class="mb-4">注文情報確認</h3>
-  	<div class="row">
-    	<div class="col-md-8 mb-4" >
+	<div class="row">
+		<div class="col-md-8 mb-4" >
 			<table class="table table-bordered">
 					<thead class="thead-light">
 						<tr>
@@ -12,42 +12,42 @@
 						</tr>
 					</thead>
 				  <% @cart_items.each do |cart_item| %>
-				  	<tbody>
-				  		<tr>
-				  			<td style="width:55%">
-				  				<%= attachment_image_tag cart_item.item, :image,　format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "mr-4" %>
-				  				<%= cart_item.item.name %>
-		  					</td>
-				  			<td style="width:15%">
-				  				<%= (cart_item.item.price*1.1).round(0) %>
-				  			</td>
-				  			<td style="width:15%">
-				  				<%= cart_item.quantity %>
-		  					</td>
-				  			<td style="width:15%">
-				  				<%= (cart_item.item.price*1.1*cart_item.quantity).round(0) %>
-				  			</td>
-				  		</tr>
-				  	</tbody>
+					<tbody>
+						<tr>
+							<td style="width:55%">
+								<%= attachment_image_tag cart_item.item, :image,　format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "mr-4" %>
+								<%= cart_item.item.name %>
+							</td>
+							<td style="width:15%">
+								<%= (cart_item.item.price*1.1).round(0) %>
+							</td>
+							<td style="width:15%">
+								<%= cart_item.quantity %>
+							</td>
+							<td style="width:15%">
+								<%= (cart_item.item.price*1.1*cart_item.quantity).round(0) %>
+							</td>
+						</tr>
+					</tbody>
 				  <% end %>
 				</table>
 			</div>
 			<div class="col-md-4">
 				<table class="table table-bordered">
-				  	<thead class="thead-light">
-				  		<tr>
-				  			<th style="width:50%">送料</th>
-				  			<td style="width:50%"><%= @order.postage %></td>
-				  		</tr>
-				  		<tr>
-				  			<th style="width:50%">商品合計</th>
-				  			<td style="width:50%"><%= (@total_price*1.1).round(0) %></td>
-				  		</tr>
-				  		<tr>
-				  			<th style="width:50%">合計金額</th>
-				  			<td style="width:50%"><%= ((@total_price*1.1).round(0))+@order.postage %></td>
-				  		</tr>
-				  	</thead>
+					<thead class="thead-light">
+						<tr>
+							<th style="width:50%">送料</th>
+							<td style="width:50%"><%= @order.postage %></td>
+						</tr>
+						<tr>
+							<th style="width:50%">商品合計</th>
+							<td style="width:50%"><%= (@total_price*1.1).round(0) %></td>
+						</tr>
+						<tr>
+							<th style="width:50%">合計金額</th>
+							<td style="width:50%"><%= ((@total_price*1.1).round(0))+@order.postage %></td>
+						</tr>
+					</thead>
 				</table>
 			</div>
 		</div>
@@ -74,10 +74,10 @@
 				<%= f.hidden_field :total_price, value: @total_price %>
 				<%= f.hidden_field :pay_select, value: @order.pay_select %>
 				<div class="text-md-center">
-	        		<%= f.submit '購入を確定する', class: "btn btn-primary" %>
-	        	</div>
-	        <% end %>
-        </div>
-    </div>
+					<%= f.submit '購入を確定する', class: "btn btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
 
