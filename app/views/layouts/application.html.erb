@@ -19,5 +19,18 @@
     <% end %>
 
     <%= yield %>
+
+    <% unless request.url.include?("admin") %>
+      <footer class="fixed-bottom mb-3">
+              <div class="row text-right mr-auto">
+                <div class="col-12">
+                  <i class="fa fa-facebook-square fa-2x text-muted"></i>
+                  <i class="fa fa-twitter-square fa-2x text-muted"></i>
+                  <i class="fa fa-instagram fa-2x text-muted"></i>
+                </div>
+              </div>
+      </footer>
+   <% end %>
+
   </body>
 </html>
