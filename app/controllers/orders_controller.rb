@@ -58,7 +58,7 @@ class OrdersController < CustomerSideController
 			    total_price: @total_price,
 			    pay_select: order_params[:pay_select].to_i
 			)
-			unless @delivery.save
+			if @delivery.invalid?
 				@customer = current_customer
 				render :new
 			end
@@ -66,6 +66,12 @@ class OrdersController < CustomerSideController
 	end
 
 	def thanks
+		@delivery = current_customer.deliveries.new(
+				name: order_params[:name],
+				address: order_params[:address],
+				postal_code: order_params[:postal_code],
+			)
+		@delivery.save
 		@order = current_customer.orders.new(order_params)
 		ActiveRecord::Base.transaction do
 	    	if @order.save!
