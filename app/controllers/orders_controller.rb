@@ -17,10 +17,10 @@ class OrdersController < CustomerSideController
 	end
 
 	def confirm
-		select_type = order_params[:select_type]
+		@select_type = order_params[:select_type]
 		@cart_items = current_customer.cart_items
 		@total_price = @cart_items.sum{ |t| t.item.price * t.quantity }
-		case select_type
+		case @select_type
 		when 'my_delivery'
 			@order = current_customer.orders.new(
 				name: current_customer.full_name,
@@ -66,14 +66,16 @@ class OrdersController < CustomerSideController
 	end
 
 	def thanks
-		@delivery = current_customer.deliveries.new(
-				name: order_params[:name],
-				address: order_params[:address],
-				postal_code: order_params[:postal_code],
-			)
-		@delivery.save
-		@order = current_customer.orders.new(order_params)
 		ActiveRecord::Base.transaction do
+			if params[:select_type] == "new_delivery"
+				@delivery = current_customer.deliveries.new(
+						name: order_params[:name],
+						address: order_params[:address],
+						postal_code: order_params[:postal_code],
+					)
+				@delivery.save
+			end
+			@order = current_customer.orders.new(order_params)
 	    	if @order.save!
 	    		cart_items = current_customer.cart_items
 	    		cart_items.each do |c_i|

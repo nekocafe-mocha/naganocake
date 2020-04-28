@@ -7,7 +7,6 @@
       <h2>注文情報入力</h2><br>
       <h5 class="font-weight-bold">支払方法</h5>
         <%= form_with(model: @order, local: true, url: confirm_orders_path, method: :get) do |f| %>
-
           <div class="mb-4">
             <%= f.select :pay_select, Order.pay_selects, {}, {class: "form-control col-md-3 ml-5"} %>
           </div>
