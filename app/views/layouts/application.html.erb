@@ -7,10 +7,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+   <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
   </head>
 
-  <body>
+  <body class="mb-5">
 
     <% if request.url.include?("admin") %>
       <%= render 'layouts/admin_header' %>
@@ -20,4 +20,17 @@
 
     <%= yield %>
   </body>
+
+   <% unless request.url.include?("admin") %>
+      <footer class="fixed-bottom">
+              <div class="row text-right mr-auto">
+                <div class="col-12">
+                  <i class="fa fa-facebook-square fa-2x text-muted"></i>
+                  <i class="fa fa-twitter-square fa-2x text-muted"></i>
+                  <i class="fa fa-instagram fa-2x text-muted"></i>
+                </div>
+              </div>
+      </footer>
+   <% end %>
+
 </html>
