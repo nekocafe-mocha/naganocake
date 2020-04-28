@@ -11,6 +11,7 @@ class OrdersController < CustomerSideController
 
 	def new
 		@order = Order.new
+		@delivery = Delivery.new
 		@customer = current_customer
 		@deliveries = current_customer.deliveries
 	end
